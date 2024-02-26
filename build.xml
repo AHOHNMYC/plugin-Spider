@@ -10,7 +10,7 @@
 	<property name="build" location="build/"/>
 	<property name="build-test" location="build-test/"/>
 	<property name="dist" location="dist/"/>
-	<property name="junit.location" value="/usr/share/java/junit.jar"/>
+	<property name="junit.location" value="/usr/share/java/junit4.jar"/>
 	<available file="src/plugins/Spider/Version.java" property="version.present"/>
 	<available file="${junit.location}" property="junit.present"/>
 
@@ -36,7 +36,7 @@
 		<!-- Create the build directory structure used by compile -->
 
 		<!-- FIXME: remove the debug and replace with optimize -->
-		<javac srcdir="src/" destdir="${build}" debug="on" optimize="on" source="${source-version}" target="${target-version}">
+		<javac srcdir="src/" destdir="${build}" debug="on" optimize="on" source="${source-version}" target="${target-version}" includeantruntime="false">
 			<classpath>
 				<pathelement location="${freenet-ext.location}"/>
 				<pathelement location="${freenet-cvs-snapshot.location}"/>
@@ -49,7 +49,7 @@
 	<!-- ================================================== -->
 
 	<target name="unit-build" depends="compile" if="junit.present" unless="skip_tests">
-		<javac srcdir="src/" destdir="${build-test}" debug="on" optimize="on" source="1.8">
+		<javac srcdir="src/" destdir="${build-test}" debug="on" optimize="on" source="1.8" includeantruntime="false">
 			<classpath>
 				<pathelement path="${build}"/>
 				<pathelement location="${freenet-ext.location}"/>
